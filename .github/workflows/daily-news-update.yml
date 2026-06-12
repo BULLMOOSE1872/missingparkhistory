@@ -62,6 +62,12 @@ jobs:
           if [ "${{ inputs.force_synthesis }}" = "true" ]; then ARGS="$ARGS --force-synthesis"; fi
           python scripts/update_news.py $ARGS
 
+      - name: Re-sort cards chronologically (newest first)
+        if: ${{ inputs.dry_run != 'true' }}
+        run: |
+          python scripts/resort_cards.py news-and-press.html
+          python scripts/resort_cards.py index.html
+
       - name: Commit and push changes
         if: ${{ inputs.dry_run != 'true' }}
         run: |
