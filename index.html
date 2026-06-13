@@ -462,29 +462,16 @@ Sincerely,
       <button class="nd-cta nd-cta-secondary" onclick="ndClose()">&#x1F5FA;&#xFE0F; Explore the Map</button>
       <a class="nd-cta nd-cta-support" href="https://ko-fi.com/missingparkhistory" target="_blank" rel="noopener">&#x2615; Support This Project</a>
     </div>
-    <div class="nd-dismiss">
-      <button onclick="ndDismissToday()">Don&rsquo;t show this again</button>
-    </div>
   </div>
 </div>
 
 <script>
 (function(){
-  // One-time celebratory "victory" edition: supersedes the daily/weekly digest so it
-  // shows once even to visitors who already dismissed today's digest, then never nags.
-  var ND_KEY='nd_victory_2026_06_12';
-  var seen=null;
-  try{seen=localStorage.getItem(ND_KEY)}catch(e){}
-  // Show once ever, immediately on page load
-  if(!seen && !document.body.classList.contains('embed-mode')){
+  // Show on every visit (no persistence), immediately on page load.
+  if(!document.body.classList.contains('embed-mode')){
     document.getElementById('ndOverlay').classList.add('active');
-    try{localStorage.setItem(ND_KEY,'1')}catch(e){}
   }
   window.ndClose=function(){
-    document.getElementById('ndOverlay').classList.remove('active');
-  };
-  window.ndDismissToday=function(){
-    try{localStorage.setItem(ND_KEY,'1')}catch(e){}
     document.getElementById('ndOverlay').classList.remove('active');
   };
   document.addEventListener('keydown',function(e){
