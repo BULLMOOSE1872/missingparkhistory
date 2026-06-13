@@ -366,6 +366,16 @@ Sincerely,
 .nd-dismiss{text-align:center;padding:0 24px 16px}
 .nd-dismiss button{background:0;border:0;color:#555;font-size:12px;cursor:pointer;font-family:-apple-system,sans-serif;transition:color .2s}
 .nd-dismiss button:hover{color:#888}
+/* Celebratory victory variant */
+.nd-card.nd-victory{border-color:#16704a}
+.nd-header.nd-victory{background:linear-gradient(135deg,#065f46,#059669);overflow:hidden}
+.nd-header.nd-victory h2{color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.25)}
+.nd-header.nd-victory .nd-badge{background:rgba(255,255,255,0.18)}
+.nd-header.nd-victory .nd-confetti{position:absolute;top:0;left:0;right:0;font-size:16px;line-height:1;letter-spacing:14px;opacity:.45;pointer-events:none;white-space:nowrap;overflow:hidden;animation:ndFloat 6s ease-in-out infinite}
+@keyframes ndFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
+.nd-victory-deadline{display:inline-flex;align-items:center;gap:6px;margin-top:12px;background:rgba(251,191,36,0.15);border:1px solid rgba(251,191,36,0.4);color:#fbbf24;padding:6px 12px;border-radius:10px;font-size:12px;font-weight:700;font-family:-apple-system,sans-serif}
+.nd-caveat{font-size:13px;color:#9ca3af;font-style:italic}
+@media(prefers-reduced-motion:reduce){.nd-header.nd-victory .nd-confetti{animation:none}}
 @media(max-width:600px){
   .nd-card{border-radius:0;max-height:100vh;height:100vh}
   .nd-header{border-radius:0;padding:24px 20px 18px}
@@ -378,31 +388,42 @@ Sincerely,
 </style>
 
 <div class="nd-overlay" id="ndOverlay" onclick="if(event.target===this)ndClose()">
-  <div class="nd-card">
-    <button class="nd-close" onclick="ndClose()" aria-label="Close news digest">&times;</button>
-    <div class="nd-header">
-      <h2>&#128240; This Week in Park Censorship</h2>
-      <div class="nd-daterange">Jun 9 &ndash; Jun 13, 2026 &middot; 5 new developments</div>
+  <div class="nd-card nd-victory">
+    <button class="nd-close" onclick="ndClose()" aria-label="Close news update">&times;</button>
+    <div class="nd-header nd-victory">
+      <div class="nd-confetti" aria-hidden="true">🎉 🎊 ⚖️ 🎉 🎊 ⚖️ 🎉 🎊 ⚖️ 🎉 🎊 ⚖️ 🎉 🎊 ⚖️</div>
+      <h2>&#127881; VICTORY &mdash; Court Orders Park History Restored</h2>
+      <div class="nd-daterange">Ruling: June 12, 2026 &middot; Federal Preliminary Injunction</div>
       <div class="nd-badge-row">
-        <span class="nd-badge">⚖️ Third Circuit Hears Appeal</span>
-        <span class="nd-badge">👁️ Public Comments Released</span>
-        <span class="nd-badge">📜 Unfettered Discretion Claimed</span>
+        <span class="nd-badge">⚖️ Injunction Granted</span>
+        <span class="nd-badge">🗓️ 21 Days to Restore</span>
+        <span class="nd-badge">🏛️ 423-Unit Park System</span>
       </div>
+      <div class="nd-victory-deadline">⏳ Signs must be back by the 250th anniversary &mdash; July 4, 2026</div>
     </div>
 
     <div class="nd-synthesis">
-      <h3>Where the Fight Stands</h3>
-      <p>A federal appeals court hearing on <strong>June 2</strong> put the <strong>President&rsquo;s House slavery exhibit</strong> removal at the center of the constitutional fight over federal control of historical narrative, just one month before Philadelphia hosts <strong>1.5 million visitors</strong> for <strong>250th anniversary celebrations</strong> on <strong>July 4</strong>. Before the <strong>Third Circuit</strong>, Justice Department attorneys asserted the <strong>National Park Service has unfettered discretion</strong> over exhibit content—even suggesting the government could eliminate any reference to slavery entirely—while city and advocacy attorneys defended the February lower court order mandating full restoration. The case turns on whether a <strong>cooperative agreement</strong> between the city and NPS requires federal approval before changes, with the administration arguing it donated the 2010 exhibit outright and retains absolute interpretive authority. The timing escalates the stakes: the site commemorating where George Washington enslaved nine people now sits dark as the nation prepares its largest patriotic gathering in decades.</p>
-      <p>The Philadelphia clash arrives amid broader evidence of the administration&rsquo;s interpretive reach. Analysis of public comments released by the <strong>Sierra Club</strong>—which is pursuing a separate lawsuit to access internal records—found only a <strong>handful supporting removal efforts</strong>, undermining claims of grassroots demand for exhibit changes. The comments were solicited under the review process that produced the <strong>leaked database published by the Washington Post</strong>, which documented hundreds of displays flagged under <strong>Executive Order 14253</strong>. The Third Circuit&rsquo;s ruling will determine not only whether one city can resist federal exhibit dismantling through contractual leverage, but whether courts will impose any limits on the administration&rsquo;s claim of absolute curatorial power across the <strong>423-unit park system</strong>—a precedent with implications for every site from <strong>Muir Woods</strong> to <strong>Fort Sumter</strong>.</p>
+      <h3>A Landmark Win for Park History</h3>
+      <p>A federal judge has <strong>blocked the Trump administration&rsquo;s campaign to erase history from America&rsquo;s national parks</strong>. On <strong>June 12, 2026</strong>, U.S. District Judge <strong>Angel Kelley</strong> in Boston (District of Massachusetts) granted a <strong>preliminary injunction</strong> ordering the Interior Department to <strong>restore the signs, displays, and interpretive exhibits</strong> it stripped from parks nationwide&mdash;on slavery, climate change, and civil-rights and LGBTQ+ history&mdash;<strong>within 21 days</strong>, &ldquo;by the 250th anniversary to properly honor the remarkable achievements of the United States.&rdquo; Judge Kelley wrote that the administration had tried to <em>&ldquo;rewrite the Nation&rsquo;s history with a white-out pen,&rdquo;</em> and that &ldquo;under the guise of promoting American dignity&rdquo; it was sharing <em>&ldquo;a limited history &hellip; thereby telling half-truths.&rdquo;</em> Parks, she said, must tell <strong>&ldquo;the good, the bad, and the ugly.&rdquo;</strong></p>
+      <p>The ruling comes in <strong>National Parks Conservation Association v. Department of the Interior</strong> (No. 1:26-cv-10877), brought in February by <strong>six conservation, history, and science groups</strong> through <strong>Democracy Forward</strong>. It strikes at <strong>Executive Order 14253</strong> (March 2025) and Interior Secretary Doug Burgum&rsquo;s <strong>Secretary&rsquo;s Order 3431</strong>, which together drove the removal of hundreds of displays across the <strong>423-unit park system</strong>&mdash;from George Washington&rsquo;s enslaved household at the <strong>President&rsquo;s House</strong> in Philadelphia, to climate warnings at <strong>Fort Sumter</strong>, to the pride flag at <strong>Stonewall</strong>. The court found the purge violated the <strong>NPS Organic Act</strong>, the <strong>Centennial Act</strong>, and the <strong>National Parks Omnibus Management Act</strong>.</p>
+      <p class="nd-caveat">A major step forward&mdash;but not the final word. This is a preliminary injunction; the Interior Department has called Judge Kelley a &ldquo;liberal activist judge&rdquo; and is weighing an appeal. The case continues.</p>
     </div>
 
     <div class="nd-articles">
-      <h3>Latest Coverage</h3>
+      <h3>Coverage &amp; Court Record</h3>
+
+      <div class="nd-article">
+        <div class="nd-art-date"><div class="nd-day">12</div><div class="nd-mon">Jun</div></div>
+        <div class="nd-art-body">
+          <div class="nd-art-meta"><span class="nd-art-source">The New York Times</span><span class="nd-art-tag nd-tag-court">Ruling</span></div>
+          <div class="nd-art-title"><a href="https://www.nytimes.com/2026/06/12/us/politics/judge-national-parks-trump.html" target="_blank" rel="noopener">Judge Orders Trump Administration to Restore National Park History</a></div>
+        </div>
+      </div>
 
       <div class="nd-article">
         <div class="nd-art-date"><div class="nd-day">13</div><div class="nd-mon">Jun</div></div>
         <div class="nd-art-body">
-          <div class="nd-art-meta"><span class="nd-art-source">NBC News</span><span class="nd-art-tag nd-tag-court">Court Victory</span></div>
+          <div class="nd-art-meta"><span class="nd-art-source">NBC News</span><span class="nd-art-tag nd-tag-court">Ruling</span></div>
           <div class="nd-art-title"><a href="https://www.nbcnews.com/politics/trump-administration/judge-orders-signs-exhibits-slavery-climate-change-re-installed-parks-rcna349889" target="_blank" rel="noopener">Judge orders Trump officials to re-install signs and exhibits at national parks on topics like slavery and climate change</a></div>
         </div>
       </div>
@@ -410,32 +431,32 @@ Sincerely,
       <div class="nd-article">
         <div class="nd-art-date"><div class="nd-day">13</div><div class="nd-mon">Jun</div></div>
         <div class="nd-art-body">
-          <div class="nd-art-meta"><span class="nd-art-source">Philadelphia Inquirer</span><span class="nd-art-tag nd-tag-court">Court Victory</span></div>
-          <div class="nd-art-title"><a href="https://www.inquirer.com/politics/nation/national-parks-signs-judge-trump-presidents-house-20260613.html" target="_blank" rel="noopener">Judge blocks national parks from removing 'negative' signs</a></div>
+          <div class="nd-art-meta"><span class="nd-art-source">CNBC</span><span class="nd-art-tag nd-tag-court">Ruling</span></div>
+          <div class="nd-art-title"><a href="https://www.cnbc.com/2026/06/13/judge-orders-restoration-of-national-park-changes-at-sites-that-disparaged-us.html" target="_blank" rel="noopener">Judge orders Trump administration to restore National Park changes at sites that &lsquo;disparaged&rsquo; U.S.</a></div>
         </div>
       </div>
 
       <div class="nd-article">
         <div class="nd-art-date"><div class="nd-day">12</div><div class="nd-mon">Jun</div></div>
         <div class="nd-art-body">
-          <div class="nd-art-meta"><span class="nd-art-source">National Parks Traveler</span><span class="nd-art-tag nd-tag-court">Court Victory</span></div>
-          <div class="nd-art-title"><a href="https://www.nationalparkstraveler.org/2026/06/trump-administration-ordered-restore-history-climate-change-information-removed-parks" target="_blank" rel="noopener">Trump Administration Ordered To Restore History, Climate Change Information Removed From Parks</a></div>
+          <div class="nd-art-meta"><span class="nd-art-source">PBS NewsHour / AP</span><span class="nd-art-tag nd-tag-court">Ruling</span></div>
+          <div class="nd-art-title"><a href="https://www.pbs.org/newshour/nation/judge-orders-restoration-of-national-park-changes-made-by-trump-administration" target="_blank" rel="noopener">Judge orders restoration of National Park changes made by Trump administration</a></div>
         </div>
       </div>
 
       <div class="nd-article">
-        <div class="nd-art-date"><div class="nd-day">10</div><div class="nd-mon">Jun</div></div>
+        <div class="nd-art-date"><div class="nd-day">02</div><div class="nd-mon">Feb</div></div>
         <div class="nd-art-body">
-          <div class="nd-art-meta"><span class="nd-art-source">ABC News / Associated Press</span><span class="nd-art-tag nd-tag-resistance">Resistance</span></div>
-          <div class="nd-art-title"><a href="https://abcnews.com/Politics/wireStory/trump-order-asked-national-park-visitors-flag-negative-133735434" target="_blank" rel="noopener">A Trump Order Asked National Park Visitors to Flag 'Negative' Historical Info. They Had Other Ideas</a></div>
+          <div class="nd-art-meta"><span class="nd-art-source">Democracy Forward (PDF)</span><span class="nd-art-tag nd-tag-lawsuit">Legal &middot; Complaint</span></div>
+          <div class="nd-art-title"><a href="https://democracyforward.org/wp-content/uploads/2026/02/National-Parks-Conservation-Association-et.-al.-v.-Department-of-the-Interior-et.-al.-.pdf" target="_blank" rel="noopener">Complaint &mdash; NPCA et al. v. U.S. Department of the Interior et al.</a></div>
         </div>
       </div>
 
       <div class="nd-article">
-        <div class="nd-art-date"><div class="nd-day">9</div><div class="nd-mon">Jun</div></div>
+        <div class="nd-art-date"><div class="nd-day">&sect;</div><div class="nd-mon">Docket</div></div>
         <div class="nd-art-body">
-          <div class="nd-art-meta"><span class="nd-art-source">Associated Press / Daily Gazette</span><span class="nd-art-tag nd-tag-resistance">Resistance</span></div>
-          <div class="nd-art-title"><a href="https://www.dailygazette.com/the_recorder/ap/national/a-trump-order-asked-national-park-visitors-to-flag-negative-historical-info-they-had-other/article_05831c0f-061f-5b21-93a9-3abb9eb01e7c.html" target="_blank" rel="noopener">A Trump order asked national park visitors to flag 'negative' historical info. They had other ideas</a></div>
+          <div class="nd-art-meta"><span class="nd-art-source">Civil Rights Litigation Clearinghouse</span><span class="nd-art-tag nd-tag-lawsuit">Legal &middot; Docket</span></div>
+          <div class="nd-art-title"><a href="https://clearinghouse.net/case/47834/" target="_blank" rel="noopener">NPCA v. Dept. of the Interior, No. 1:26-cv-10877 (D. Mass.)</a></div>
         </div>
       </div>
     </div>
@@ -446,27 +467,28 @@ Sincerely,
       <a class="nd-cta nd-cta-support" href="https://ko-fi.com/missingparkhistory" target="_blank" rel="noopener">&#x2615; Support This Project</a>
     </div>
     <div class="nd-dismiss">
-      <button onclick="ndDismissToday()">Don&rsquo;t show again today</button>
+      <button onclick="ndDismissToday()">Don&rsquo;t show this again</button>
     </div>
   </div>
 </div>
 
 <script>
 (function(){
-  var ND_KEY='nd_last_shown';
-  var today=new Date().toISOString().slice(0,10);
-  var last=null;
-  try{last=localStorage.getItem(ND_KEY)}catch(e){}
-  // Show once per calendar day, immediately on page load
-  if(last!==today && !document.body.classList.contains('embed-mode')){
+  // One-time celebratory "victory" edition: supersedes the daily/weekly digest so it
+  // shows once even to visitors who already dismissed today's digest, then never nags.
+  var ND_KEY='nd_victory_2026_06_12';
+  var seen=null;
+  try{seen=localStorage.getItem(ND_KEY)}catch(e){}
+  // Show once ever, immediately on page load
+  if(!seen && !document.body.classList.contains('embed-mode')){
     document.getElementById('ndOverlay').classList.add('active');
-    try{localStorage.setItem(ND_KEY,today)}catch(e){}
+    try{localStorage.setItem(ND_KEY,'1')}catch(e){}
   }
   window.ndClose=function(){
     document.getElementById('ndOverlay').classList.remove('active');
   };
   window.ndDismissToday=function(){
-    try{localStorage.setItem(ND_KEY,today)}catch(e){}
+    try{localStorage.setItem(ND_KEY,'1')}catch(e){}
     document.getElementById('ndOverlay').classList.remove('active');
   };
   document.addEventListener('keydown',function(e){
