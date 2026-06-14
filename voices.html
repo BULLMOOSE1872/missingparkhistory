@@ -138,7 +138,7 @@ h1.hero-h {
 }
 .bar-row .label { width: 200px; font-size: 14px; color: #333; }
 .bar-wrap { flex: 1; height: 26px; background: #f0f0f0; border-radius: 4px; overflow: hidden; }
-.bar-fill { height: 100%; transition: width 0.6s ease-out; }
+.bar-fill { display: block; height: 100%; transition: width 0.6s ease-out; }
 .bar-fill.muted { background: #cbd5e1; }
 .bar-fill.eo { background: #b91c1c; }
 .bar-fill.maint { background: #d1d5db; }
@@ -183,7 +183,7 @@ h1.hero-h {
   mask: linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%);
   -webkit-mask: linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%);
 }
-.river-track { animation: scroll 90s linear infinite; padding: 0 24px; will-change: transform; }
+.river-track { animation: scroll 180s linear infinite; padding: 0 24px; will-change: transform; }
 .river-track.paused { animation-play-state: paused; }
 @keyframes scroll {
   from { transform: translateY(0); }
@@ -392,19 +392,19 @@ h1.hero-h {
     <div class="compare-panel left">
       <div class="compare-label">What NPS asked about</div>
       <h2 class="compare-title">The four feedback categories on the form</h2>
-      <div class="bar-row"><span class="label">Signs or other information</span><span class="bar-wrap"><span class="bar-fill muted" style="width:100%"></span></span><span class="pct">25%</span></div>
-      <div class="bar-row"><span class="label">Something else</span><span class="bar-wrap"><span class="bar-fill muted" style="width:100%"></span></span><span class="pct">25%</span></div>
-      <div class="bar-row"><span class="label">Services that need improvement</span><span class="bar-wrap"><span class="bar-fill muted" style="width:100%"></span></span><span class="pct">25%</span></div>
-      <div class="bar-row"><span class="label">Areas that need repair</span><span class="bar-wrap"><span class="bar-fill muted" style="width:100%"></span></span><span class="pct">25%</span></div>
+      <div class="bar-row"><span class="label">Signs or other information</span><span class="bar-wrap"><span class="bar-fill muted" style="width:25%"></span></span><span class="pct">25%</span></div>
+      <div class="bar-row"><span class="label">Something else</span><span class="bar-wrap"><span class="bar-fill muted" style="width:25%"></span></span><span class="pct">25%</span></div>
+      <div class="bar-row"><span class="label">Services that need improvement</span><span class="bar-wrap"><span class="bar-fill muted" style="width:25%"></span></span><span class="pct">25%</span></div>
+      <div class="bar-row"><span class="label">Areas that need repair</span><span class="bar-wrap"><span class="bar-fill muted" style="width:25%"></span></span><span class="pct">25%</span></div>
       <p class="panel-note">Equal weight, in theory — four categories, four buckets to sort the response into.</p>
     </div>
     <div class="compare-panel right">
       <div class="compare-label">What people actually chose</div>
       <h2 class="compare-title">Where the 35,700 comments went</h2>
-      <div class="bar-row"><span class="label">Something else</span><span class="bar-wrap"><span class="bar-fill eo" style="width:100%" data-target="100"></span></span><span class="pct">47.9%</span></div>
-      <div class="bar-row"><span class="label">Signs or other information</span><span class="bar-wrap"><span class="bar-fill eo" style="width:92%" data-target="92"></span></span><span class="pct">44.0%</span></div>
-      <div class="bar-row"><span class="label">Services that need improvement</span><span class="bar-wrap"><span class="bar-fill maint" style="width:10%" data-target="10"></span></span><span class="pct">5.0%</span></div>
-      <div class="bar-row"><span class="label">Areas that need repair</span><span class="bar-wrap"><span class="bar-fill maint" style="width:6%" data-target="6"></span></span><span class="pct">3.0%</span></div>
+      <div class="bar-row"><span class="label">Something else</span><span class="bar-wrap"><span class="bar-fill eo" style="width:47.9%"></span></span><span class="pct">47.9%</span></div>
+      <div class="bar-row"><span class="label">Signs or other information</span><span class="bar-wrap"><span class="bar-fill eo" style="width:44%"></span></span><span class="pct">44.0%</span></div>
+      <div class="bar-row"><span class="label">Services that need improvement</span><span class="bar-wrap"><span class="bar-fill maint" style="width:5%"></span></span><span class="pct">5.0%</span></div>
+      <div class="bar-row"><span class="label">Areas that need repair</span><span class="bar-wrap"><span class="bar-fill maint" style="width:3%"></span></span><span class="pct">3.0%</span></div>
       <p class="panel-note">The two categories that capture commentary on the executive order itself — "Something else" and "Signs or other information" — drew <strong>91.9%</strong> of responses.</p>
     </div>
   </div>
