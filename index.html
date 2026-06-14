@@ -37,6 +37,7 @@
 <!-- Preload critical data files -->
 <link rel="preload" href="data/parkData.json" as="fetch" crossorigin>
 <link rel="preload" href="data/manifestData.json" as="fetch" crossorigin>
+<link rel="preload" href="data/voices_park_counts.json" as="fetch" crossorigin>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css"/>
 <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css"/>
@@ -58,9 +59,11 @@
 <div class="stat-item green"><strong>1</strong> Court-Restored</div>
 <div class="stat-item" style="border-left:1px solid #333;padding-left:16px;margin-left:4px"><strong style="color:#0d9488">11</strong> FWS Sites</div>
 <div class="stat-item"><strong>443</strong> Total Entries</div>
+<a href="/voices.html" class="stat-item" style="border-left:1px solid #333;padding-left:16px;margin-left:4px;color:#fbbf24;font-weight:600;text-decoration:none" data-umami-event="voices-statbar">&rarr; <strong style="color:#fbbf24">Voices</strong></a>
 </div>
 </div>
 <div class="controls-bar" style="top:148px">
+<a href="/voices.html" class="voices-callout" data-umami-event="voices-callout"><strong>91.9%</strong> of 35,700 comments used the feedback form to comment on EO 14253. Only <strong>8.1%</strong> mentioned park services. <span class="vc-cta">See the data &rarr;</span></a>
 <div class="filter-bar" id="filterBar">
 <div class="ms-dd status" id="statusDd">
 <div class="ms-dd-trigger" onclick="togDd('statusDd')">All Statuses</div>
@@ -82,6 +85,7 @@
 <div class="ms-dd-trigger" onclick="togDd('topicDd')">All Topics</div>
 <div class="ms-dd-panel" id="topicPanel"></div>
 </div>
+<button type="button" class="voices-toggle" id="voicesToggle" aria-pressed="false" data-umami-event="voices-layer-toggle">&#128226; Public comments (35,700)</button>
 <button class="clear-all-btn" id="clearAllBtn" style="display:none" onclick="clearFilters()">✕ Clear All</button>
 </div>
 <div class="filter-chips" id="filterChips"></div>
@@ -141,6 +145,10 @@
 <div class="side-panel" id="sidePanel">
 <div class="panel-close-bar"><span onclick="closePanel()">&times;</span></div>
 <div id="panelContent"></div>
+</div>
+<div class="voices-panel" id="voicesPanel" aria-hidden="true" aria-live="polite">
+<button class="voices-panel-close" onclick="closeVoicesPanel()" aria-label="Close public comments panel">&times;</button>
+<div id="voicesPanelContent"></div>
 </div>
 <div class="legend">
 <div class="legend-title">Status Legend</div>
@@ -487,6 +495,155 @@ var parkData={},manifestData={},parksWithPages={ACAD:{name:"Acadia National Park
 if(window.location.hash==="#take-action"){setTimeout(function(){if(typeof taOpen==="function")taOpen()},300)}
 window.addEventListener("hashchange",function(){if(window.location.hash==="#take-action"&&typeof taOpen==="function")taOpen()});
 
+</script>
+
+<!-- ═══ /voices HOMEPAGE INTEGRATION — comment-volume badge layer ═══ -->
+<style>
+.voices-callout{display:flex;align-items:center;justify-content:center;gap:6px;max-width:min(700px,92vw);margin:0 auto 6px;padding:7px 16px;background:linear-gradient(180deg,rgba(10,10,15,0.97),rgba(10,10,15,0.92));border:1px solid #2a2a3a;border-radius:18px;color:#bbb;font-family:-apple-system,BlinkMacSystemFont,sans-serif;font-size:12px;line-height:1.4;text-decoration:none;box-shadow:0 4px 20px rgba(0,0,0,0.4);text-align:center;transition:all .2s}
+.voices-callout strong{color:#fbbf24;font-weight:700}
+.voices-callout .vc-cta{color:#fbbf24;font-weight:600;white-space:nowrap}
+.voices-callout:hover{border-color:#444;color:#e0e0e0}
+.voices-toggle{background:rgba(20,20,40,0.95);border:1px solid #444;color:#aaa;padding:7px 14px;border-radius:20px;font-size:12px;cursor:pointer;transition:all .2s;white-space:nowrap;font-family:-apple-system,sans-serif;display:flex;align-items:center;gap:5px}
+.voices-toggle:hover{border-color:#888;color:#ccc}
+.voices-toggle.active{background:rgba(217,119,6,0.25);border-color:#d97706;color:#fbbf24;font-weight:600}
+.voices-toggle:focus-visible{outline:2px solid #6d9eeb;outline-offset:2px}
+.voice-badge{background:#dc2626;color:#fff;border-radius:999px;padding:2px 8px;font-size:11px;font-weight:700;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,0.4);white-space:nowrap;font-family:-apple-system,BlinkMacSystemFont,sans-serif}
+.voice-badge.med{background:#f59e0b;color:#1a1a24}
+.voice-badge.low{background:#6d9eeb}
+.voices-panel{display:none;position:fixed;top:280px;right:16px;width:380px;max-width:calc(100vw - 32px);max-height:calc(100vh - 320px);overflow-y:auto;z-index:4200;background:linear-gradient(180deg,rgba(10,10,15,0.98),rgba(15,15,22,0.98));border:1px solid #2a2a3a;border-radius:14px;padding:22px 24px;box-shadow:0 8px 40px rgba(0,0,0,0.6);backdrop-filter:blur(8px);color:#e0e0e0;font-family:-apple-system,BlinkMacSystemFont,sans-serif}
+.voices-panel.active{display:block}
+.voices-panel-close{position:absolute;top:10px;right:14px;background:0;border:0;color:#888;font-size:24px;line-height:1;cursor:pointer;padding:0}
+.voices-panel-close:hover{color:#fff}
+.voices-panel .vp-label{text-transform:uppercase;letter-spacing:.1em;font-size:11px;color:#888;margin-bottom:6px}
+.voices-panel h3{margin:0 0 4px;font-family:Georgia,serif;font-size:22px;color:#fff;line-height:1.2;padding-right:24px}
+.voices-panel .vp-meta{font-size:13px;color:#888;margin-bottom:18px}
+.voices-panel .vp-stats{display:flex;gap:12px;margin-bottom:18px}
+.voices-panel .vp-stat{flex:1;background:rgba(255,255,255,0.04);border:1px solid #2a2a3a;border-radius:8px;padding:12px 14px}
+.voices-panel .vp-stat .n{font-family:Georgia,serif;font-size:22px;font-weight:700;color:#fbbf24;line-height:1}
+.voices-panel .vp-stat .l{font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.08em;margin-top:6px}
+.voices-panel .vp-themes-label,.voices-panel .vp-quote-label{font-size:12px;color:#888;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+.voices-panel .vp-themes{margin-bottom:18px}
+.voices-panel .vp-pill{display:inline-block;background:rgba(109,158,235,0.15);color:#8bb3ff;padding:4px 10px;border-radius:999px;font-size:12px;margin:0 6px 6px 0}
+.voices-panel .vp-quote{background:rgba(255,255,255,0.03);border-left:3px solid #6d9eeb;padding:14px 16px;border-radius:0 4px 4px 0;font-family:Georgia,serif;font-size:15px;line-height:1.5;color:#d8d8e0}
+.voices-panel .vp-quote .qd{display:block;margin-top:8px;font-family:-apple-system,sans-serif;font-size:11px;color:#888}
+.voices-panel .vp-link{display:inline-block;margin-top:16px;color:#fbbf24;font-size:13px;font-weight:600;text-decoration:none}
+.voices-panel .vp-link:hover{text-decoration:underline}
+@media(max-width:600px){.voices-callout{display:none}.voices-panel{top:auto;bottom:0;right:0;left:0;width:100%;max-width:100%;max-height:72vh;border-radius:14px 14px 0 0}}
+</style>
+<script>
+/* /voices integration: per-park public-comment badge layer over the existing Leaflet map.
+   Decoupled from the main app — fetches its own JSON, only shares the global `map`. */
+(function(){
+  function normalizeParkName(name){
+    return name
+      .toLowerCase()
+      .replace(/&amp;/g,'&')
+      .replace(/&/g,'and')
+      .replace(/\bnp\b/g,'national park')
+      .replace(/\bnm\b/g,'national monument')
+      .replace(/\bnhs\b/g,'national historic site')
+      .replace(/\bnhp\b/g,'national historical park')
+      .replace(/\bnmem\b/g,'national memorial')
+      .replace(/\bnra\b/g,'national recreation area')
+      .replace(/\bnst\b/g,'national scenic trail')
+      .replace(/\bnwr\b/g,'national wildlife refuge')
+      .replace(/\bnht\b/g,'national historic trail')
+      .replace(/\bns\b/g,'national seashore')
+      .replace(/\bpart of\b.*$/g,'')
+      .replace(/[^a-z0-9]+/g,' ')
+      .trim();
+  }
+  var THEME_LABELS={save_signs_funding:'Defend signs / rangers / funding',trump_administration:'Trump administration / political actors',erasure_whitewashing:'Erasure / whitewashing',sign_about_signage:'About the signs themselves',slavery_black_history:'Slavery & Black history',indigenous_native:'Indigenous & Native American history',shame_disgust:'Shame & outrage',lgbtq:'LGBTQ+ history',patriotism_truth:'Patriotism / tell the truth',climate_environment:'Climate & environment',jan6_insurrection:'January 6',qr_snitch_report:'QR-code reporting',fascism_authoritarian:'Fascism / authoritarianism',japanese_internment:'Japanese-American internment',thank_rangers_parks:'Thank rangers / parks'};
+  function bandBadge(n){ return n>=200?'':(n>=50?'med':'low'); }
+  function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  var LS_KEY='mph-voices-layer';
+  var voicesLayer=null, voicesReady=false, layerOn=false, buildPromise=null;
+  var toggle=document.getElementById('voicesToggle');
+  var panel=document.getElementById('voicesPanel');
+  var panelContent=document.getElementById('voicesPanelContent');
+  var DEFAULT_LABEL=toggle?toggle.innerHTML:'';
+
+  function showPanel(name,info){
+    var pills=(info.top_themes||[]).map(function(t){return '<span class="vp-pill">'+esc(THEME_LABELS[t]||t)+'</span>';}).join('');
+    var quote=info.sample_quote
+      ? '<div class="vp-quote">&ldquo;'+esc(info.sample_quote)+'&rdquo;<span class="qd">&mdash; '+esc(info.sample_quote_date||'')+'</span></div>'
+      : '<div class="vp-quote" style="border-left-color:#555;color:#888;font-style:italic">No representative quote selected for this park yet.</div>';
+    panelContent.innerHTML=
+      '<div class="vp-label">Park</div>'+
+      '<h3>'+esc(name)+'</h3>'+
+      '<div class="vp-meta">Rank #'+info.rank+' of 475 by public-comment volume</div>'+
+      '<div class="vp-stats">'+
+        '<div class="vp-stat"><div class="n">'+info.count.toLocaleString()+'</div><div class="l">comments</div></div>'+
+        '<div class="vp-stat"><div class="n">#'+info.rank+'</div><div class="l">rank</div></div>'+
+      '</div>'+
+      '<div class="vp-themes-label">Top themes commenters raised</div>'+
+      '<div class="vp-themes">'+(pills||'<span style="color:#666">&mdash;</span>')+'</div>'+
+      '<div class="vp-quote-label">Sample comment</div>'+
+      quote+
+      '<a class="vp-link" href="/voices.html">See all 35,700 voices &rarr;</a>';
+    panel.classList.add('active');
+    panel.setAttribute('aria-hidden','false');
+  }
+  window.closeVoicesPanel=function(){ if(panel){ panel.classList.remove('active'); panel.setAttribute('aria-hidden','true'); } };
+
+  function buildLayer(){
+    return Promise.all([
+      fetch('data/voices_park_counts.json').then(function(r){return r.json();}),
+      fetch('data/parkData.json').then(function(r){return r.json();})
+    ]).then(function(res){
+      var voices=res[0], pd=res[1], byNorm={};
+      for(var k in pd){ var p=pd[k]; if(p&&p.park&&typeof p.lat==='number'&&typeof p.lon==='number'){ byNorm[normalizeParkName(p.park)]=p; } }
+      voicesLayer=L.layerGroup();
+      var placed=0, unmatched=0;
+      Object.keys(voices.parks).map(function(n){return [n,voices.parks[n]];})
+        .sort(function(a,b){return a[1].rank-b[1].rank;})
+        .forEach(function(pair){
+          var name=pair[0], info=pair[1];
+          var park=pd[name]||byNorm[normalizeParkName(name)];
+          if(!park){ unmatched++; return; }
+          var icon=L.divIcon({className:'',html:'<div class="voice-badge '+bandBadge(info.count)+'">'+info.count+'</div>',iconSize:[60,22],iconAnchor:[30,11]});
+          var m=L.marker([park.lat,park.lon],{icon:icon,zIndexOffset:500});
+          m.on('click',function(){ showPanel(name,info); });
+          voicesLayer.addLayer(m);
+          placed++;
+        });
+      voicesReady=true;
+      console.log('[voices layer] built '+placed+' badges, '+unmatched+' unmatched');
+      return voicesLayer;
+    });
+  }
+  function ensureLayer(){ if(!buildPromise){ buildPromise=buildLayer().catch(function(e){ console.error('[voices layer] build failed',e); buildPromise=null; throw e; }); } return buildPromise; }
+
+  function setToggle(on){
+    layerOn=on;
+    if(toggle){ toggle.classList.toggle('active',on); toggle.setAttribute('aria-pressed',String(on)); }
+    try{ localStorage.setItem(LS_KEY,on?'on':'off'); }catch(e){}
+    if(on){ if(voicesLayer&&typeof map!=='undefined'&&!map.hasLayer(voicesLayer)) map.addLayer(voicesLayer); }
+    else { if(voicesLayer&&typeof map!=='undefined'&&map.hasLayer(voicesLayer)) map.removeLayer(voicesLayer); window.closeVoicesPanel(); }
+  }
+  function onToggle(){
+    if(!voicesReady){
+      if(toggle) toggle.textContent='⏳ Loading…';
+      ensureLayer().then(function(){ if(toggle) toggle.innerHTML=DEFAULT_LABEL; setToggle(true); })
+                   .catch(function(){ if(toggle) toggle.innerHTML=DEFAULT_LABEL; });
+      return;
+    }
+    setToggle(!layerOn);
+  }
+
+  if(toggle){
+    toggle.addEventListener('click',onToggle);
+    toggle.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); onToggle(); } });
+  }
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') window.closeVoicesPanel(); });
+
+  // Build eagerly (uses the preloaded JSON) so toggling is instant; restore persisted state.
+  ensureLayer().then(function(){
+    var saved=null; try{ saved=localStorage.getItem(LS_KEY); }catch(e){}
+    if(saved==='on') setToggle(true);
+  }).catch(function(){});
+})();
 </script>
 </body>
 </html>
