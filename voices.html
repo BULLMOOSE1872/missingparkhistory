@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The 35,700 Voices — Missing Park History</title>
+<link rel="icon" type="image/svg+xml" href="logo.svg">
+<meta name="description" content="What 35,700 Americans said to the National Park Service in response to Executive Order 14253. Public comments analyzed by park, theme, and date.">
+
+<!-- Open Graph -->
+<meta property="og:title" content="The 35,700 Voices — Missing Park History">
+<meta property="og:description" content="Public comments submitted to the NPS in response to Executive Order 14253. 475 parks. June 2025 – January 2026.">
+<meta property="og:url" content="https://missingparkhistory.org/voices.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="preload" href="data/voices_park_counts.json" as="fetch" crossorigin>
+<link rel="preload" href="data/voices_curated_quotes.json" as="fetch" crossorigin>
+<link rel="preload" href="data/parkData.json" as="fetch" crossorigin>
+
+<style>
+/* ================================================================
+   /voices.html — light-theme content page matching about.html
+   Concepts: #7 (asked vs answered), #5 (counter + river), #1 (map)
+   ================================================================ */
+
+* { box-sizing: border-box; }
+body {
+  font-family: Georgia, 'Times New Roman', serif;
+  background: #fafafa;
+  color: #2d2d2d;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ----- TOPNAV (matches about.html exactly) ----- */
+.topnav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 5000;
+  background: rgba(255,255,255,0.97);
+  border-bottom: 1px solid #e0e0e0;
+  backdrop-filter: blur(12px);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 32px; height: 56px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+.topnav-brand {
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none; color: #1a1a1a;
+  font-family: Georgia, serif; font-size: 17px; font-weight: 700;
+}
+.topnav-brand span { color: #b91c1c; }
+.topnav-links {
+  display: flex; gap: 6px;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
+}
+.topnav-links a {
+  color: #666; text-decoration: none;
+  padding: 8px 16px; border-radius: 20px;
+  transition: all 0.2s; font-weight: 500;
+}
+.topnav-links a:hover { background: #f0f0f0; color: #1a1a1a; }
+.topnav-links a.active { background: #b91c1c; color: #fff; }
+.topnav-links a.map-link { color: #b91c1c; }
+.topnav-links a.map-link:hover { background: #fee2e2; color: #991b1b; }
+
+/* ----- LAYOUT ----- */
+.page { padding-top: 56px; }
+.section { max-width: 1080px; margin: 0 auto; padding: 64px 28px; }
+.section.narrow { max-width: 760px; }
+.eyebrow {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  text-transform: uppercase; letter-spacing: 0.14em;
+  font-size: 12px; color: #b91c1c; font-weight: 700;
+  margin-bottom: 12px;
+}
+h1.hero-h {
+  font-size: 48px; line-height: 1.1; margin: 0 0 24px 0;
+  color: #1a1a1a; font-weight: 700;
+  max-width: 880px;
+}
+.hero-sub {
+  font-size: 21px; color: #555; max-width: 720px;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.55;
+}
+
+/* ----- #5 HERO COUNTER (light-theme variant) ----- */
+.voices-hero {
+  text-align: center;
+  padding: 100px 28px 64px;
+  background: linear-gradient(180deg, #fff 0%, #fafafa 100%);
+  border-bottom: 1px solid #eee;
+}
+.voices-counter {
+  font-size: clamp(80px, 14vw, 180px);
+  font-weight: 700; letter-spacing: -0.04em;
+  line-height: 0.95;
+  font-variant-numeric: tabular-nums;
+  background: linear-gradient(180deg, #1a1a1a 0%, #b91c1c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin: 24px 0 0 0; font-family: Georgia, serif;
+}
+.voices-tag {
+  font-size: clamp(20px, 2.6vw, 28px);
+  color: #2d2d2d; max-width: 840px;
+  margin: 28px auto 0; line-height: 1.4; font-style: italic;
+}
+.voices-tag .hi { color: #b91c1c; font-style: normal; font-weight: 700; }
+.voices-meta {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 14px; color: #888; margin-top: 24px;
+  letter-spacing: 0.02em;
+}
+
+/* ----- #7 ASKED vs ANSWERED ----- */
+.compare {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+  background: #fff; border-radius: 12px; overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  border: 1px solid #e8e8e8;
+}
+.compare-panel { padding: 36px 32px; }
+.compare-panel.left { border-right: 1px dashed #e8e8e8; }
+.compare-label {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em;
+  color: #777; margin-bottom: 8px; font-weight: 700;
+}
+.compare-title { font-size: 24px; margin: 0 0 24px 0; line-height: 1.25; color: #1a1a1a; }
+.compare-panel.right .compare-title { color: #b91c1c; }
+.bar-row {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 14px;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+.bar-row .label { width: 200px; font-size: 14px; color: #333; }
+.bar-wrap { flex: 1; height: 26px; background: #f0f0f0; border-radius: 4px; overflow: hidden; }
+.bar-fill { height: 100%; transition: width 0.6s ease-out; }
+.bar-fill.muted { background: #cbd5e1; }
+.bar-fill.eo { background: #b91c1c; }
+.bar-fill.maint { background: #d1d5db; }
+.bar-row .pct {
+  width: 56px; text-align: right;
+  font-variant-numeric: tabular-nums; font-size: 14px;
+  color: #555; font-weight: 700;
+}
+.panel-note { font-size: 14px; color: #666; margin-top: 22px;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
+.takeaway {
+  margin-top: 40px; background: #fff;
+  border-left: 6px solid #b91c1c; padding: 24px 28px;
+  border-radius: 0 6px 6px 0; box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+}
+.takeaway-label {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 12px; text-transform: uppercase; letter-spacing: 0.12em;
+  color: #b91c1c; font-weight: 700; margin-bottom: 10px;
+}
+.takeaway-text { font-size: 22px; line-height: 1.45; margin: 0; color: #1a1a1a; }
+.takeaway-text .hi { color: #b91c1c; font-weight: 700; }
+
+/* ----- #5 RIVER (light-theme variant) ----- */
+.river-section { padding: 64px 0 80px; background: #f3f1ec; border-top: 1px solid #e0d8c8; border-bottom: 1px solid #e0d8c8; }
+.river-label {
+  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  text-transform: uppercase; letter-spacing: 0.14em;
+  font-size: 12px; color: #777; margin-bottom: 28px;
+}
+.river-controls { text-align: center; margin-bottom: 12px; }
+.river-pause {
+  background: #fff; border: 1px solid #cbd5e1; color: #555;
+  padding: 6px 14px; border-radius: 16px; cursor: pointer;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 12px;
+}
+.river-pause:hover { background: #f0f0f0; }
+.river {
+  height: 520px; position: relative; overflow: hidden;
+  mask: linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%);
+  -webkit-mask: linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%);
+}
+.river-track { animation: scroll 90s linear infinite; padding: 0 24px; will-change: transform; }
+.river-track.paused { animation-play-state: paused; }
+@keyframes scroll {
+  from { transform: translateY(0); }
+  to { transform: translateY(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .river-track { animation: none; }
+}
+.river blockquote {
+  max-width: 760px; margin: 0 auto 24px;
+  padding: 22px 26px; background: #fff;
+  border-left: 4px solid #6b7280; border-radius: 4px;
+  font-size: 17px; line-height: 1.6; color: #2d2d2d;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  font-family: Georgia, serif;
+}
+.river blockquote.theme-erasure_whitewashing { border-left-color: #b91c1c; }
+.river blockquote.theme-lgbtq { border-left-color: #c026d3; }
+.river blockquote.theme-indigenous_native { border-left-color: #b45309; }
+.river blockquote.theme-slavery_black_history { border-left-color: #0369a1; }
+.river blockquote.theme-save_signs_funding { border-left-color: #059669; }
+.river blockquote.theme-japanese_internment { border-left-color: #7c3aed; }
+.river blockquote.theme-jan6_insurrection { border-left-color: #ea580c; }
+.river blockquote.theme-qr_snitch_report { border-left-color: #0891b2; }
+.river blockquote cite {
+  display: block; margin-top: 10px;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px; color: #777; font-style: normal;
+}
+.river blockquote cite a { color: #2563b4; text-decoration: none; }
+.river blockquote cite a:hover { text-decoration: underline; }
+
+/* ----- #1 EMBEDDED MAP ----- */
+.map-section { background: #fafafa; padding-bottom: 40px; }
+.map-shell {
+  max-width: 1240px; margin: 0 auto;
+  padding: 0 28px;
+}
+.map-grid {
+  display: grid; grid-template-columns: 1fr 380px; gap: 24px;
+  margin-top: 24px;
+}
+#voicesMap {
+  height: 600px; background: #f0eee8;
+  border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  border: 1px solid #e0e0e0;
+}
+.map-legend {
+  display: flex; gap: 16px; justify-content: center;
+  margin-top: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px; color: #666;
+}
+.legend-swatch { display: inline-flex; align-items: center; gap: 6px; }
+.swatch {
+  width: 14px; height: 14px; border-radius: 50%;
+  display: inline-block; border: 2px solid #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+.swatch.high { background: #b91c1c; }
+.swatch.med { background: #f59e0b; }
+.swatch.low { background: #2563b4; }
+.side-panel {
+  background: #fff; border: 1px solid #e0e0e0;
+  border-radius: 12px; padding: 24px;
+  height: 600px; overflow-y: auto;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.side-panel .label {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  font-size: 11px; color: #888; margin-bottom: 6px;
+}
+.side-panel h3 { margin: 0 0 6px 0; font-size: 24px; color: #1a1a1a; line-height: 1.2; }
+.side-panel .park-meta { font-size: 13px; color: #777; margin-bottom: 22px;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
+.stat-row { display: flex; gap: 12px; margin-bottom: 22px; }
+.stat {
+  flex: 1; background: #f9f7f2; border-radius: 8px; padding: 12px 14px;
+  border: 1px solid #efebe0;
+}
+.stat .n { font-family: Georgia, serif; font-size: 22px; font-weight: 700; color: #b91c1c; line-height: 1; }
+.stat .l {
+  font-size: 11px; color: #888;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  margin-top: 6px; font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+.themes-label, .quotes-label {
+  font-size: 12px; color: #888;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  margin-bottom: 8px;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+.themes { margin-bottom: 22px; }
+.theme-pill {
+  display: inline-block; background: #f3f1ec; color: #555;
+  padding: 4px 10px; border-radius: 999px;
+  font-size: 12px; margin: 0 6px 6px 0;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+.quote-card {
+  background: #fafafa; border-left: 3px solid #6b7280;
+  padding: 14px 16px; border-radius: 0 4px 4px 0;
+  margin-bottom: 12px;
+  font-family: Georgia, serif; font-size: 15px; line-height: 1.5;
+  color: #2d2d2d;
+}
+.quote-card .qdate {
+  display: block; margin-top: 8px;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 11px; color: #888;
+}
+.side-empty { color: #888; font-size: 14px; line-height: 1.6; padding: 24px 4px; font-style: italic; }
+
+/* Voice-badge custom marker */
+.voice-badge {
+  background: #b91c1c; color: white; border-radius: 999px;
+  padding: 2px 8px; font-size: 11px; font-weight: 700;
+  border: 2px solid white; box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  white-space: nowrap;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+.voice-badge.med { background: #f59e0b; color: #1a1a1a; }
+.voice-badge.low { background: #2563b4; }
+
+/* ----- BOTTOM CTA / FOOTER ----- */
+.cta-section { background: #1a1a1a; color: #fff; padding: 64px 28px; text-align: center; }
+.cta-section h2 { margin: 0 0 16px 0; font-size: 32px; color: #fff; }
+.cta-section p { color: #ccc; max-width: 640px; margin: 0 auto 28px; font-size: 17px; font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
+.cta-section .cta-links a {
+  display: inline-block; background: #b91c1c; color: #fff;
+  padding: 12px 24px; border-radius: 24px; text-decoration: none;
+  margin: 0 8px 12px; font-weight: 600;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 14px;
+}
+.cta-section .cta-links a.secondary { background: transparent; border: 1px solid #555; }
+.cta-section .cta-links a:hover { background: #991b1b; }
+.cta-section .cta-links a.secondary:hover { background: #2a2a2a; border-color: #777; }
+
+.page-footer {
+  text-align: center; padding: 40px 20px; margin-top: 0;
+  border-top: 1px solid #333; background: #1a1a1a; color: #777;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 12px;
+}
+
+/* ----- RESPONSIVE ----- */
+@media (max-width: 900px) {
+  .map-grid { grid-template-columns: 1fr; }
+  .side-panel { height: auto; max-height: 480px; }
+  .compare { grid-template-columns: 1fr; }
+  .compare-panel.left { border-right: none; border-bottom: 1px dashed #e8e8e8; }
+}
+@media (max-width: 600px) {
+  .topnav { padding: 0 16px; height: 50px; }
+  .topnav-brand { font-size: 14px; }
+  .topnav-links a { padding: 6px 10px; font-size: 12px; }
+  .section { padding: 40px 20px; }
+  .voices-hero { padding: 64px 20px 40px; }
+  h1.hero-h { font-size: 32px; }
+  .hero-sub { font-size: 17px; }
+  .compare-panel { padding: 24px 20px; }
+  .bar-row .label { width: 130px; font-size: 13px; }
+  .takeaway-text { font-size: 18px; }
+  .river { height: 420px; }
+  .river blockquote { font-size: 15px; padding: 18px 22px; }
+  #voicesMap { height: 460px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ TOP NAVIGATION BAR ═══ -->
+<nav class="topnav">
+  <a class="topnav-brand" href="/" aria-label="Missing Park History home"><img src="logo.svg" alt="" style="height:24px;width:auto;vertical-align:middle"> <span>Missing</span> Park History</a>
+  <div class="topnav-links">
+    <a href="/" class="map-link" aria-label="Interactive map">&#x1F5FA; Map</a>
+    <a href="/voices.html" class="active" aria-current="page">Voices</a>
+    <a href="/about.html">About</a>
+    <a href="/data-methodology.html">Data</a>
+    <a href="/nps-censorship.html">Censorship</a>
+    <a href="/secretarial-order-3431.html">SO 3431</a>
+    <a href="/timeline.html">Timeline</a>
+    <a href="/legal-analysis.html">Legal</a>
+    <a href="/presidents-house.html">President's House</a>
+    <a href="/news-and-press.html">News &amp; Press</a>
+  </div>
+</nav>
+
+<div class="page">
+
+<!-- ═══ #5 — HERO COUNTER ═══ -->
+<section class="voices-hero">
+  <div class="eyebrow">— What the public said —</div>
+  <h1 class="voices-counter" id="counter" aria-label="35,700 comments">0</h1>
+  <p class="voices-tag">comments submitted to the National Park Service in response to <span class="hi">Executive Order 14253</span>.</p>
+  <p class="voices-meta">From <strong>475 parks</strong> across the country &nbsp;·&nbsp; June 4, 2025 – January 14, 2026 &nbsp;·&nbsp; Released by NPS in early 2026</p>
+</section>
+
+<!-- ═══ #7 — ASKED vs ANSWERED ═══ -->
+<section class="section">
+  <div class="eyebrow">The story in one image</div>
+  <h1 class="hero-h">What the Park Service asked. What 35,700 Americans actually said.</h1>
+  <p class="hero-sub">The National Park Service posted QR-code signs at parks asking visitors to flag content that "inappropriately disparages Americans." Here is how visitors used the form.</p>
+
+  <div class="compare" style="margin-top:48px">
+    <div class="compare-panel left">
+      <div class="compare-label">What NPS asked about</div>
+      <h2 class="compare-title">The four feedback categories on the form</h2>
+      <div class="bar-row"><span class="label">Signs or other information</span><span class="bar-wrap"><span class="bar-fill muted" style="width:100%"></span></span><span class="pct">25%</span></div>
+      <div class="bar-row"><span class="label">Something else</span><span class="bar-wrap"><span class="bar-fill muted" style="width:100%"></span></span><span class="pct">25%</span></div>
+      <div class="bar-row"><span class="label">Services that need improvement</span><span class="bar-wrap"><span class="bar-fill muted" style="width:100%"></span></span><span class="pct">25%</span></div>
+      <div class="bar-row"><span class="label">Areas that need repair</span><span class="bar-wrap"><span class="bar-fill muted" style="width:100%"></span></span><span class="pct">25%</span></div>
+      <p class="panel-note">Equal weight, in theory — four categories, four buckets to sort the response into.</p>
+    </div>
+    <div class="compare-panel right">
+      <div class="compare-label">What people actually chose</div>
+      <h2 class="compare-title">Where the 35,700 comments went</h2>
+      <div class="bar-row"><span class="label">Something else</span><span class="bar-wrap"><span class="bar-fill eo" style="width:100%" data-target="100"></span></span><span class="pct">47.9%</span></div>
+      <div class="bar-row"><span class="label">Signs or other information</span><span class="bar-wrap"><span class="bar-fill eo" style="width:92%" data-target="92"></span></span><span class="pct">44.0%</span></div>
+      <div class="bar-row"><span class="label">Services that need improvement</span><span class="bar-wrap"><span class="bar-fill maint" style="width:10%" data-target="10"></span></span><span class="pct">5.0%</span></div>
+      <div class="bar-row"><span class="label">Areas that need repair</span><span class="bar-wrap"><span class="bar-fill maint" style="width:6%" data-target="6"></span></span><span class="pct">3.0%</span></div>
+      <p class="panel-note">The two categories that capture commentary on the executive order itself — "Something else" and "Signs or other information" — drew <strong>91.9%</strong> of responses.</p>
+    </div>
+  </div>
+
+  <div class="takeaway">
+    <div class="takeaway-label">The bottom line</div>
+    <p class="takeaway-text">Only <span class="hi">8.1%</span> of responses concerned actual park services or repairs. The other <span class="hi">91.9%</span> used the feedback form as a referendum on the executive order itself.</p>
+  </div>
+</section>
+
+<!-- ═══ #5 — RIVER OF VOICES ═══ -->
+<section class="river-section">
+  <p class="river-label">A few of the voices · continues scrolling</p>
+  <div class="river-controls">
+    <button type="button" class="river-pause" id="riverPause" aria-pressed="false">⏸ Pause</button>
+  </div>
+  <div class="river">
+    <div class="river-track" id="riverTrack">
+      <div class="side-empty" style="text-align:center;padding:200px 0">Loading quotes…</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ #1 — EMBEDDED MAP ═══ -->
+<section class="section map-section" style="max-width:none;padding-left:0;padding-right:0">
+  <div class="map-shell">
+    <div class="eyebrow">Explore by park</div>
+    <h1 class="hero-h" style="font-size:36px">Find your park. See what people said about it.</h1>
+    <p class="hero-sub">Every red badge is a park where 200 or more people submitted comments. Amber is 50–199. Blue is 1–49. Click any badge to read the top quotes for that park.</p>
+
+    <div class="map-legend">
+      <span class="legend-swatch"><span class="swatch high"></span> 200+ comments</span>
+      <span class="legend-swatch"><span class="swatch med"></span> 50–199 comments</span>
+      <span class="legend-swatch"><span class="swatch low"></span> 1–49 comments</span>
+    </div>
+
+    <div class="map-grid">
+      <div id="voicesMap" role="application" aria-label="Map of comment volume by park"></div>
+      <aside class="side-panel" id="sidePanel">
+        <div class="side-empty">Click any badge on the map to see the public comments submitted about that park.</div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA + FOOTER ═══ -->
+<section class="cta-section">
+  <h2>Want the full dataset?</h2>
+  <p>The complete 35,700-comment analysis, the per-park breakdown, the thematic coding, and the methodology are all open and available.</p>
+  <div class="cta-links">
+    <a href="/data-methodology.html">Methodology</a>
+    <a href="/" class="secondary">Back to the map</a>
+    <a href="/about.html" class="secondary">About the project</a>
+  </div>
+</section>
+
+<div class="page-footer">
+  Source: NPS_SO3431_QR_Comments-For-Release.xlsx · 35,700 comments submitted via nps.gov/aboutus/eo14253.htm · June 4, 2025 – January 14, 2026
+</div>
+
+</div><!-- /page -->
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+/* ============================================================
+   /voices.html — runtime
+   ============================================================ */
+
+// -- prefers-reduced-motion --
+const prefersReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// -- #5 counter animation --
+(function animateCounter() {
+  const el = document.getElementById('counter');
+  if (!el) return;
+  const target = 35700;
+  if (prefersReduce) { el.textContent = target.toLocaleString(); return; }
+  const start = performance.now();
+  const duration = 2500;
+  function tick(now) {
+    const t = Math.min(1, (now - start) / duration);
+    const eased = 1 - Math.pow(1 - t, 3);
+    el.textContent = Math.floor(eased * target).toLocaleString();
+    if (t < 1) requestAnimationFrame(tick);
+    else el.textContent = target.toLocaleString();
+  }
+  requestAnimationFrame(tick);
+})();
+
+// -- #5 river: load curated quotes and inject two copies for seamless loop --
+function loadRiver() {
+  return fetch('data/voices_curated_quotes.json')
+    .then(r => r.json())
+    .then(quotes => {
+      const track = document.getElementById('riverTrack');
+      const render = q => {
+        const primaryTheme = (q.themes && q.themes[0]) || '';
+        const themeClass = primaryTheme ? `theme-${primaryTheme}` : '';
+        const parkSlug = q.park.toLowerCase()
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/^-|-$/g, '');
+        const text = q.text.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        return `<blockquote class="${themeClass}">
+          "${text}"
+          <cite>— <a href="/parks/${parkSlug}.html">${q.park}</a>, ${q.date}</cite>
+        </blockquote>`;
+      };
+      track.innerHTML = [...quotes, ...quotes].map(render).join('');
+    })
+    .catch(err => {
+      console.error('Could not load river quotes:', err);
+      document.getElementById('riverTrack').innerHTML =
+        '<div class="side-empty" style="text-align:center;padding:200px 0">Quotes unavailable.</div>';
+    });
+}
+loadRiver();
+
+// -- River pause/resume --
+(function() {
+  const btn = document.getElementById('riverPause');
+  const track = document.getElementById('riverTrack');
+  let paused = false;
+  btn.addEventListener('click', () => {
+    paused = !paused;
+    track.classList.toggle('paused', paused);
+    btn.setAttribute('aria-pressed', String(paused));
+    btn.textContent = paused ? '▶ Resume' : '⏸ Pause';
+  });
+  // Pause when tab hidden
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) track.classList.add('paused');
+    else if (!paused) track.classList.remove('paused');
+  });
+})();
+
+// -- Park-name normalization (for joining voices_park_counts.json with parkData.json) --
+function normalizeParkName(name) {
+  return name
+    .toLowerCase()
+    .replace(/&amp;/g, '&')
+    .replace(/&/g, 'and')
+    .replace(/\bnp\b/g, 'national park')
+    .replace(/\bnm\b/g, 'national monument')
+    .replace(/\bnhs\b/g, 'national historic site')
+    .replace(/\bnhp\b/g, 'national historical park')
+    .replace(/\bnmem\b/g, 'national memorial')
+    .replace(/\bnra\b/g, 'national recreation area')
+    .replace(/\bnst\b/g, 'national scenic trail')
+    .replace(/\bnwr\b/g, 'national wildlife refuge')
+    .replace(/\bnht\b/g, 'national historic trail')
+    .replace(/\bns\b/g, 'national seashore')
+    .replace(/\bpart of\b.*$/g, '')
+    .replace(/[^a-z0-9]+/g, ' ')
+    .trim();
+}
+
+// -- Side panel rendering --
+function renderSidePanel(name, info) {
+  const panel = document.getElementById('sidePanel');
+  const themePillHTML = (info.top_themes || [])
+    .map(t => {
+      const label = THEME_LABELS[t] || t;
+      return `<span class="theme-pill">${label}</span>`;
+    }).join('');
+  const quoteHTML = info.sample_quote
+    ? `<div class="quote-card">"${info.sample_quote.replace(/</g, '&lt;')}"
+         <span class="qdate">— ${info.sample_quote_date}</span>
+       </div>`
+    : '<p class="side-empty" style="padding:8px 0">No representative quote selected for this park yet.</p>';
+  panel.innerHTML = `
+    <div class="label">Park</div>
+    <h3>${name}</h3>
+    <div class="park-meta">Rank #${info.rank} of 475 by comment volume</div>
+    <div class="stat-row">
+      <div class="stat"><div class="n">${info.count.toLocaleString()}</div><div class="l">comments</div></div>
+      <div class="stat"><div class="n">#${info.rank}</div><div class="l">rank</div></div>
+    </div>
+    <div class="themes">
+      <div class="themes-label">Top themes commenters raised</div>
+      ${themePillHTML || '<span class="side-empty" style="padding:4px 0;font-style:normal">—</span>'}
+    </div>
+    <div class="quotes-label">Sample comment</div>
+    ${quoteHTML}
+  `;
+}
+
+const THEME_LABELS = {
+  save_signs_funding: 'Defend signs / rangers / funding',
+  trump_administration: 'Trump administration / political actors',
+  erasure_whitewashing: 'Erasure / whitewashing',
+  sign_about_signage: 'About the signs themselves',
+  slavery_black_history: 'Slavery & Black history',
+  indigenous_native: 'Indigenous & Native American history',
+  shame_disgust: 'Shame & outrage',
+  lgbtq: 'LGBTQ+ history',
+  patriotism_truth: 'Patriotism / tell the truth',
+  climate_environment: 'Climate & environment',
+  jan6_insurrection: 'January 6',
+  qr_snitch_report: 'QR-code reporting',
+  fascism_authoritarian: 'Fascism / authoritarianism',
+  japanese_internment: 'Japanese-American internment',
+  thank_rangers_parks: 'Thank rangers / parks',
+};
+
+// -- #1 embedded map --
+function initMap() {
+  const map = L.map('voicesMap', { zoomControl: true, preferCanvas: true })
+    .setView([39.5, -98], 4);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+    subdomains: 'abcd',
+    maxZoom: 19,
+  }).addTo(map);
+
+  function bandClass(n) {
+    if (n >= 200) return 'high';
+    if (n >= 50) return 'med';
+    return 'low';
+  }
+
+  Promise.all([
+    fetch('data/voices_park_counts.json').then(r => r.json()),
+    fetch('data/parkData.json').then(r => r.json()),
+  ]).then(([voices, parkData]) => {
+    // Build normalized-name → coordinates lookup from parkData
+    const pdByName = {};
+    for (const k in parkData) {
+      const p = parkData[k];
+      if (p && p.park && typeof p.lat === 'number' && typeof p.lon === 'number') {
+        pdByName[normalizeParkName(p.park)] = p;
+      }
+    }
+
+    let placed = 0;
+    let unmatched = 0;
+    const ranked = Object.entries(voices.parks).sort((a, b) => a[1].rank - b[1].rank);
+
+    for (const [name, info] of ranked) {
+      // Try exact match, then normalized match
+      let pd = null;
+      if (parkData[name]) pd = parkData[name];
+      else pd = pdByName[normalizeParkName(name)];
+
+      if (!pd) { unmatched++; continue; }
+
+      const cls = bandClass(info.count);
+      const badge = L.divIcon({
+        className: '',
+        html: `<div class="voice-badge ${cls}">${info.count}</div>`,
+        iconSize: [60, 22],
+        iconAnchor: [30, 11],
+      });
+      const m = L.marker([pd.lat, pd.lon], { icon: badge }).addTo(map);
+      m.on('click', () => renderSidePanel(name, info));
+      placed++;
+    }
+    console.log(`[voices map] placed ${placed} parks, ${unmatched} unmatched`);
+  }).catch(err => {
+    console.error('[voices map] data load error:', err);
+  });
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initMap);
+} else {
+  initMap();
+}
+</script>
+
+<!-- Analytics — matches the rest of the site -->
+<script defer src="https://cloud.umami.is/script.js" data-website-id="855b6647-f973-4b49-8d4f-48decbd11f3a"></script>
+</body>
+</html>

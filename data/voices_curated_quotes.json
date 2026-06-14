@@ -1,0 +1,812 @@
+[
+  {
+    "text": "The mandate to censor the history of the park is a big problem. Park signs should teach the truth of the area's history even if it isn't flattering to our country because that is how we learn.",
+    "park": "Yellowstone National Park",
+    "date": "2025-06-25",
+    "themes": [
+      "erasure_whitewashing",
+      "sign_about_signage"
+    ],
+    "score": 7
+  },
+  {
+    "text": "Why were signs removed that gave a complete history of the park and area? Looks like the park is trying to erase Native American and women's history. Are we only allowed to learn white American history in our parks now?",
+    "park": "Muir Woods National Monument",
+    "date": "2025-07-25",
+    "themes": [
+      "erasure_whitewashing",
+      "indigenous_native",
+      "sign_about_signage",
+      "patriotism_truth"
+    ],
+    "score": 7
+  },
+  {
+    "text": "Leave the signage about our history alone. We need to learn the truth of our past. America\u2019s not perfect. It isn\u2019t \u201cwoke\u201d to speak and learn the truth. Spend our tax dollars on fully funding the NPS.",
+    "park": "Allegheny Portage Railroad National Historic Site",
+    "date": "2025-10-03",
+    "themes": [
+      "save_signs_funding",
+      "sign_about_signage"
+    ],
+    "score": 7
+  },
+  {
+    "text": "Rangers should be able to talk about the history of Japanese American incarceration at Amache, or the history of slavery at Fort Monroe, without looking over their shoulders in fear.",
+    "park": "Appalachian National Scenic Trail",
+    "date": "2025-06-17",
+    "themes": [
+      "slavery_black_history",
+      "japanese_internment",
+      "save_signs_funding"
+    ],
+    "score": 6
+  },
+  {
+    "text": "This sign suggests that information describing Manzanar\u2019s history is somehow negative. Internment happened.  The story should be told.  Not erased.  That is the grandeur of America - we don\u2019t erase any more.",
+    "park": "Manzanar National Historic Site",
+    "date": "2025-06-18",
+    "themes": [
+      "erasure_whitewashing",
+      "japanese_internment",
+      "sign_about_signage",
+      "qr_snitch_report"
+    ],
+    "score": 6
+  },
+  {
+    "text": "The history of Japanese confinement at Manzanar is important for future generations to learn. I support keeping this history alive and accessible. Don\u2019t erase these historical stories.",
+    "park": "Manzanar National Historic Site",
+    "date": "2025-06-19",
+    "themes": [
+      "erasure_whitewashing",
+      "japanese_internment"
+    ],
+    "score": 6
+  },
+  {
+    "text": "I want to learn about ALL of our history whether it is negative or positive about living or past Americans   Do not whitewash our history. We want to continue to learn about our history- the good the bad and the ugly",
+    "park": "Great Smoky Mountains National Park",
+    "date": "2025-06-27",
+    "themes": [
+      "erasure_whitewashing"
+    ],
+    "score": 6
+  },
+  {
+    "text": "Stop revising American History on the Stonewall Monument\u2019s  signage and website. Restore the use of LGBTQ+ to the signs and website and learn to spell community properly!",
+    "park": "Stonewall National Monument",
+    "date": "2025-07-14",
+    "themes": [
+      "erasure_whitewashing",
+      "lgbtq",
+      "sign_about_signage",
+      "patriotism_truth"
+    ],
+    "score": 6
+  },
+  {
+    "text": "Please continue to tell the truth about the history of slavery in the United States and show the images that tell the story. We cannot erase history.",
+    "park": "Fort Pulaski National Monument",
+    "date": "2025-09-17",
+    "themes": [
+      "erasure_whitewashing",
+      "slavery_black_history",
+      "patriotism_truth"
+    ],
+    "score": 6
+  },
+  {
+    "text": "At nearby Pea Island there should be prominent signage for Keeper Ethridge and the African American surfmen.  I would like to learn more about African -American history and Native American history",
+    "park": "Wright Brothers National Memorial",
+    "date": "2025-09-20",
+    "themes": [
+      "slavery_black_history",
+      "indigenous_native",
+      "sign_about_signage",
+      "patriotism_truth"
+    ],
+    "score": 6
+  },
+  {
+    "text": "Do not erase history, signs, photos, and more.  Our parks belong to us.  We need the truth about them.  Protect them.  Don't erase them.",
+    "park": "Rocky Mountain National Park",
+    "date": "2025-10-16",
+    "themes": [
+      "erasure_whitewashing",
+      "sign_about_signage"
+    ],
+    "score": 6
+  },
+  {
+    "text": "Please research, preserve, and share\u202fall aspects\u202fof our history, and fund this work so these stories can be told. Don\u2019t erase photos and signs. Don\u2019t erase history from national parks",
+    "park": "Acadia National Park",
+    "date": "2025-10-18",
+    "themes": [
+      "erasure_whitewashing",
+      "save_signs_funding",
+      "sign_about_signage"
+    ],
+    "score": 6
+  },
+  {
+    "text": "What an amazing place. Awesome rangers and staff caring for our protected landscapes. Please keep my tax dollars funding America's parks and work toward fully funding them so our rangers have what they need.",
+    "park": "Badlands National Park",
+    "date": "2025-06-16",
+    "themes": [
+      "save_signs_funding"
+    ],
+    "score": 5
+  },
+  {
+    "text": "Please don't censor park rangers & info plaques. Slavery and other sensitive topics are important to the history of these parks and national monuments. \"Those who don't learn from the past are doomed to repeat it.\"",
+    "park": "Harpers Ferry National Historical Park",
+    "date": "2025-06-17",
+    "themes": [
+      "erasure_whitewashing",
+      "slavery_black_history",
+      "save_signs_funding",
+      "sign_about_signage"
+    ],
+    "score": 5
+  },
+  {
+    "text": "Rangers should be able to discuss the entire history related to a site, including history of enslavement, genocide and how the government has changed. Do not limit what history park staff can provide.",
+    "park": "African American Civil War Memorial",
+    "date": "2025-06-17",
+    "themes": [
+      "slavery_black_history",
+      "indigenous_native",
+      "save_signs_funding"
+    ],
+    "score": 5
+  },
+  {
+    "text": "Keeping signage that reflects the truth and represents our history accurately is what matters to me as an American taxpayer. It\u2019s important we learn from our history, not cover it up.",
+    "park": "Great Smoky Mountains National Park",
+    "date": "2025-06-17",
+    "themes": [
+      "sign_about_signage"
+    ],
+    "score": 5
+  },
+  {
+    "text": "This sign asking folks to snitch about inaccurate signage is really detracting from the grandeur of the park.   Also, now that funding is cut the bathrooms are gross. Restore funding and hire janitorial staff!",
+    "park": "Rocky Mountain National Park",
+    "date": "2025-06-17",
+    "themes": [
+      "save_signs_funding",
+      "sign_about_signage",
+      "qr_snitch_report"
+    ],
+    "score": 5
+  },
+  {
+    "text": "Our history needs to be shared even if it doesn\u2019t show Americans in a positive light. History isn\u2019t meant to be positive- it\u2019s meant to be the truth. Share the entire truth about our history.",
+    "park": "Mammoth Cave National Park",
+    "date": "2025-06-18",
+    "themes": [],
+    "score": 5
+  },
+  {
+    "text": "Trans history is American history. Restore truth by restoring references to trans people on the Stonewall National Monument\u2019s website and signs.",
+    "park": "Stonewall National Monument",
+    "date": "2025-06-19",
+    "themes": [
+      "lgbtq",
+      "sign_about_signage",
+      "patriotism_truth"
+    ],
+    "score": 5
+  },
+  {
+    "text": "You might have forgotten what you learned in history, but I did not.  And removing signage does not erase history.  The wall came down on the right side of history, will you?",
+    "park": "Cuyahoga Valley National Park",
+    "date": "2025-06-20",
+    "themes": [
+      "erasure_whitewashing",
+      "sign_about_signage"
+    ],
+    "score": 5
+  },
+  {
+    "text": "You cannot erase the true history of the USA good or bad. The truth is the truth and true history is important. Stop this ignorant assault on our parks and public lands. Do better. Be better.",
+    "park": "African Burial Ground National Monument",
+    "date": "2025-06-20",
+    "themes": [
+      "erasure_whitewashing",
+      "save_signs_funding",
+      "patriotism_truth"
+    ],
+    "score": 5
+  },
+  {
+    "text": "National parks protect real history. Don\u2019t silence it. Don\u2019t rewrite it. We need the full story\u2014every voice, every truth. Support the rangers who tell it. No edits. No erasing. Let the parks speak.",
+    "park": "Booker T Washington National Monument",
+    "date": "2025-06-20",
+    "themes": [
+      "erasure_whitewashing",
+      "save_signs_funding"
+    ],
+    "score": 5
+  },
+  {
+    "text": "Wonderful rangers and important site. Don't erase history, especially indigenous history! The Trump administration is a danger to this nation and the ideals it stands for!",
+    "park": "Effigy Mounds National Monument",
+    "date": "2025-06-23",
+    "themes": [
+      "erasure_whitewashing",
+      "indigenous_native",
+      "trump_administration",
+      "save_signs_funding"
+    ],
+    "score": 5
+  },
+  {
+    "text": "You have erased the true history of the area. I want to learn about Japanese internment in the places it happened. Please stop whitewashing history and places!",
+    "park": "Amache National Historic Site",
+    "date": "2025-06-24",
+    "themes": [
+      "erasure_whitewashing",
+      "japanese_internment",
+      "patriotism_truth"
+    ],
+    "score": 5
+  },
+  {
+    "text": "The posted signs regarding \"Restoring Truth and Sanity to American History\" are an attempt to \"whitewash\" factual history and I find them offensive.",
+    "park": "Fort Sumter and Fort Moultrie National Historical Park",
+    "date": "2025-06-25",
+    "themes": [
+      "erasure_whitewashing",
+      "sign_about_signage",
+      "patriotism_truth"
+    ],
+    "score": 5
+  },
+  {
+    "text": "History is History.  Trying to erase segments of the American story impoverishes our society.  Let the thin-skinned fascists attempting to rewrite history rot.",
+    "park": "Biscayne National Park",
+    "date": "2025-06-26",
+    "themes": [
+      "erasure_whitewashing"
+    ],
+    "score": 5
+  },
+  {
+    "text": "Take down the signs that say \u201cRestore Truth and Sanity to American History,\u201d because Trump is absolutely the most insane person in the world and no one should be trying to whitewash or re-write history like he is doing.",
+    "park": "Glacier National Park",
+    "date": "2025-06-27",
+    "themes": [
+      "erasure_whitewashing",
+      "trump_administration",
+      "sign_about_signage",
+      "patriotism_truth"
+    ],
+    "score": 5
+  },
+  {
+    "text": "Please do not censor the Native People's history of the park and the history of Mount Denali/McKinnley's naming and name changes over history of the park.",
+    "park": "Denali National Park & Preserve",
+    "date": "2025-06-27",
+    "themes": [
+      "erasure_whitewashing"
+    ],
+    "score": 5
+  },
+  {
+    "text": "The signs need to stay true to the history of what happened here, or history will repeat itself. Stop trying to whitewash the history of the United States \ud83c\uddfa\ud83c\uddf8.",
+    "park": "Sand Creek Massacre National Historic Site",
+    "date": "2025-06-28",
+    "themes": [
+      "erasure_whitewashing",
+      "sign_about_signage"
+    ],
+    "score": 5
+  },
+  {
+    "text": "Don't erase history. The signs are fine. Trust in the expertise of your park rangers to interpret history for visitors.",
+    "park": "African American Civil War Memorial",
+    "date": "2025-06-28",
+    "themes": [
+      "erasure_whitewashing",
+      "save_signs_funding",
+      "sign_about_signage"
+    ],
+    "score": 5
+  },
+  {
+    "text": "There's a new sign that offends me. Option 3 specifically. The sign states that my Park Rangers are being scrutinized for telling the honest history of this park. The only negative thing at this park is this sign.",
+    "park": "Charles Pinckney National Historic Site",
+    "date": "2025-07-04",
+    "themes": [
+      "save_signs_funding",
+      "sign_about_signage",
+      "patriotism_truth"
+    ],
+    "score": 5
+  },
+  {
+    "text": "This park should feature more signage and history featuring Native American Indians that lived in this area. Also hire more Rangers for this and all national parks and cut funding for boarder protection",
+    "park": "Sleeping Bear Dunes National Lakeshore",
+    "date": "2025-07-06",
+    "themes": [
+      "indigenous_native",
+      "save_signs_funding",
+      "sign_about_signage"
+    ],
+    "score": 5
+  },
+  {
+    "text": "Bring back park staff decimated by Doge. History will not be kind to the Trump Administration. Protect our National Parks and Monuments. Protect the Endangered Species Act. Protect all public lands. Fund NPS.",
+    "park": "Zion National Park",
+    "date": "2025-07-06",
+    "themes": [
+      "trump_administration",
+      "save_signs_funding"
+    ],
+    "score": 5
+  },
+  {
+    "text": "Parks are to document our history, good and bad, and preserve our natural places. Fund our parks and stop trying to whitewash history. This sign is ridiculous.",
+    "park": "Klondike Gold Rush National Historical Park",
+    "date": "2025-07-06",
+    "themes": [
+      "erasure_whitewashing",
+      "save_signs_funding",
+      "sign_about_signage"
+    ],
+    "score": 5
+  },
+  {
+    "text": "Our families love Acadia and the Rangers that take us on tours around the beautiful park. We want to hear the truth of history, and of the indigenous people that lived here and any other truth about historic Maine.",
+    "park": "Acadia National Park",
+    "date": "2025-07-07",
+    "themes": [
+      "indigenous_native",
+      "save_signs_funding"
+    ],
+    "score": 5
+  },
+  {
+    "text": "Great job by the staff and rangers keeping the history of the industrial revolution alive and accessible. Love the multilingual signage and the historical knowledge of the staff. Great job NPS--keep it up!",
+    "park": "Lowell National Historical Park",
+    "date": "2025-07-09",
+    "themes": [
+      "save_signs_funding",
+      "sign_about_signage"
+    ],
+    "score": 5
+  },
+  {
+    "text": "Thankful for National parks that honor that US history is messy but that truth is a part of it.   Attempting to whitewash or cleanse history is to lose some of its depth and richness.",
+    "park": "Mammoth Cave National Park",
+    "date": "2025-07-16",
+    "themes": [
+      "erasure_whitewashing"
+    ],
+    "score": 5
+  },
+  {
+    "text": "National public lands belong to We the People! History needs to be saved and learned from, not covered up! Preserve our lands! Preserve our history! Preserve who we are and always will be!!!",
+    "park": "Carlisle Federal Indian Boarding School National Monument",
+    "date": "2025-07-21",
+    "themes": [
+      "save_signs_funding"
+    ],
+    "score": 5
+  },
+  {
+    "text": "Love the signage about the history of Muir Woods and the land and the native people. Love the additional context about the role of native people and women in Muir Woods's history. Great work.",
+    "park": "Muir Woods National Monument",
+    "date": "2025-07-23",
+    "themes": [
+      "sign_about_signage"
+    ],
+    "score": 5
+  },
+  {
+    "text": "Signs in support of \u201cRestoring Truth and Sanity to American History\u201d are implying that American History is false and insane. This is not true; these signs should be removed in the interest of sanity.",
+    "park": "Badlands National Park",
+    "date": "2025-07-23",
+    "themes": [
+      "sign_about_signage",
+      "patriotism_truth"
+    ],
+    "score": 5
+  },
+  {
+    "text": "This sign, and it's inference you will whitewash history to remove \"inconvenient\" history that is \"negative\" is offensive!  All history, pretty and otherwise, should be told!",
+    "park": "Dinosaur National Monument",
+    "date": "2025-07-28",
+    "themes": [
+      "erasure_whitewashing",
+      "sign_about_signage"
+    ],
+    "score": 5
+  },
+  {
+    "text": "Excellent job telling the story and history of the native people as well as their talents. Beautiful park! Way to go Rangers!! Keep up the great work and don\u2019t let history be whitewashed.",
+    "park": "Sitka National Historical Park",
+    "date": "2025-07-29",
+    "themes": [
+      "erasure_whitewashing",
+      "save_signs_funding"
+    ],
+    "score": 5
+  },
+  {
+    "text": "The only sign I saw that distressed me was the sign asking for this feedback. This sign clearly says to me that one racist person visiting our beautiful parks can erase history because their feelings are hurt.",
+    "park": "Johnstown Flood National Memorial",
+    "date": "2025-08-09",
+    "themes": [
+      "erasure_whitewashing",
+      "sign_about_signage"
+    ],
+    "score": 5
+  },
+  {
+    "text": "Provide the parks with more funding and diverse support staff. Do not sugarcoat American history by removing any information that casts our country or its policies in a bad light. The truth will set us free.",
+    "park": "Joshua Tree National Park",
+    "date": "2025-06-11",
+    "themes": [
+      "save_signs_funding",
+      "patriotism_truth"
+    ],
+    "score": 4
+  },
+  {
+    "text": "National parks cannot work without staff, funding, and diverse stories. The recent staff cuts, funding cuts, and decisions to pull back from diversity initiatives is detrimental to the mission of national parks.",
+    "park": "Zion National Park",
+    "date": "2025-06-11",
+    "themes": [
+      "save_signs_funding"
+    ],
+    "score": 4
+  },
+  {
+    "text": "One of the wonderful things about our National Parks is that they teach us or just remind us of our history. You can\u2019t change history by lying about it. Let the rangers do their jobs.",
+    "park": "Abraham Lincoln Birthplace National Historical Park",
+    "date": "2025-06-12",
+    "themes": [
+      "save_signs_funding"
+    ],
+    "score": 4
+  },
+  {
+    "text": "Parks can't make improvements without funding and staff to do so.  Shame on this administration for cutting your funding and firing your staff.   America did not mandate neglect and abandonment of our natural treasures.",
+    "park": "Crater Lake National Park",
+    "date": "2025-06-13",
+    "themes": [
+      "trump_administration",
+      "save_signs_funding"
+    ],
+    "score": 4
+  },
+  {
+    "text": "I\u2019d like to report the signs that are asking me to report signs that accurately portray American history. Hands off our public lands and hands off our history!!!!!!!",
+    "park": "Great Sand Dunes National Park & Preserve",
+    "date": "2025-06-13",
+    "themes": [
+      "save_signs_funding",
+      "sign_about_signage",
+      "patriotism_truth"
+    ],
+    "score": 4
+  },
+  {
+    "text": "There\u2019s a ridiculous sign in the park asking visitors to report any OTHER signs that are honest about our nation\u2019s history. Take them down now. NPS has a responsibility to educate, not whitewash or sugarcoat.",
+    "park": "Alagnak Wild River",
+    "date": "2025-06-15",
+    "themes": [
+      "erasure_whitewashing",
+      "sign_about_signage"
+    ],
+    "score": 4
+  },
+  {
+    "text": "A sign is posted attempting to instigate history erasure for political gain. It directs the public to report signage that criticizes American history.",
+    "park": "Big Hole National Battlefield",
+    "date": "2025-06-15",
+    "themes": [
+      "erasure_whitewashing",
+      "sign_about_signage",
+      "patriotism_truth"
+    ],
+    "score": 4
+  },
+  {
+    "text": "This sign asking for feedback to revise uncomfortable parts of our history is offensive and unamerican. Those who don't learn from history, even the painful parts, are doomed to repeat it.",
+    "park": "Antietam National Battlefield",
+    "date": "2025-06-15",
+    "themes": [
+      "erasure_whitewashing",
+      "sign_about_signage"
+    ],
+    "score": 4
+  },
+  {
+    "text": "Don\u2019t try to erase history. History that brings pride or history that challenges what we believe about ourselves.",
+    "park": "Richmond National Battlefield Park",
+    "date": "2025-06-15",
+    "themes": [
+      "erasure_whitewashing"
+    ],
+    "score": 4
+  },
+  {
+    "text": "Support national park rangers and stop trying to rewrite American history in favor of white supremacy. HIRE RANGERS. INCREASE BUDGETS. PROTECT PUBLIC LAND.",
+    "park": "Crater Lake National Park",
+    "date": "2025-06-16",
+    "themes": [
+      "save_signs_funding",
+      "patriotism_truth"
+    ],
+    "score": 4
+  },
+  {
+    "text": "Stop posting signs that are having people be reported for telling the true history of this country. HANDS OFF OUR HISTORY. WE WILL NOT ERASE OUR PAST.",
+    "park": "Harriet Tubman National Historical Park",
+    "date": "2025-06-16",
+    "themes": [
+      "erasure_whitewashing",
+      "save_signs_funding",
+      "sign_about_signage",
+      "patriotism_truth"
+    ],
+    "score": 4
+  },
+  {
+    "text": "Rangers were awesome. Park in great shape. Disappointed by obvious whitewashing of history. No mention of First Peoples or impacts of colonization. Incomplete history is fake history.",
+    "park": "Theodore Roosevelt National Park",
+    "date": "2025-06-16",
+    "themes": [
+      "erasure_whitewashing",
+      "save_signs_funding"
+    ],
+    "score": 4
+  },
+  {
+    "text": "Please don't make the park employees whitewash or censor the history of them. How can we learn to be and do better, if we don't know what happened? Putting your head in the sand won't change anything.",
+    "park": "Cuyahoga Valley National Park",
+    "date": "2025-06-17",
+    "themes": [
+      "erasure_whitewashing",
+      "save_signs_funding"
+    ],
+    "score": 4
+  },
+  {
+    "text": "I support all of the rangers and thank them for their tireless efforts to preserve and protect the beautiful lands. I also appreciate that the history of our country and its true past are represented here.",
+    "park": "Glacier National Park",
+    "date": "2025-06-17",
+    "themes": [
+      "save_signs_funding"
+    ],
+    "score": 4
+  },
+  {
+    "text": "Nice park but it needs more funding and staff. All history needs to be displayed especially if it makes us feel uncomfortable, that is how we learn.",
+    "park": "Birmingham Civil Rights National Monument",
+    "date": "2025-06-17",
+    "themes": [
+      "save_signs_funding"
+    ],
+    "score": 4
+  },
+  {
+    "text": "Lincoln was a hero and fought slavery. You can't erase history. Slavery was and will always be wrong.",
+    "park": "Abraham Lincoln Birthplace National Historical Park",
+    "date": "2025-06-17",
+    "themes": [
+      "erasure_whitewashing",
+      "slavery_black_history"
+    ],
+    "score": 4
+  },
+  {
+    "text": "Signs directing people to point out unfavorable/negative aspects of the history of this country are anti-American and erase our history and the progress we\u2019ve made and continue to make as such.",
+    "park": "Santa Monica Mountains National Recreation Area",
+    "date": "2025-06-17",
+    "themes": [
+      "erasure_whitewashing",
+      "sign_about_signage"
+    ],
+    "score": 4
+  },
+  {
+    "text": "Rangers at Amache are amazing!! The work they are doing, history they are sharing, are an important part of U.S.history and are helping this country become what we\u2019re supposed to be!",
+    "park": "Amache National Historic Site",
+    "date": "2025-06-18",
+    "themes": [
+      "japanese_internment",
+      "save_signs_funding"
+    ],
+    "score": 4
+  },
+  {
+    "text": "Need more rangers and staff to help protect the park and animals.  Don't have any maps in English and none ordered for replenishments.  Running out of jr ranger books and already don't have pencils to fill them out with.",
+    "park": "Mount Rainier National Park",
+    "date": "2025-06-19",
+    "themes": [
+      "save_signs_funding"
+    ],
+    "score": 4
+  },
+  {
+    "text": "Please give the pals more funding. This is history that needs to be told. And don\u2019t rewrite history just to make people feel more comfortable. History is not always comfortable.",
+    "park": "Brown v. Board of Education National Historical Park",
+    "date": "2025-06-20",
+    "themes": [
+      "erasure_whitewashing",
+      "save_signs_funding"
+    ],
+    "score": 4
+  },
+  {
+    "text": "Instead of trying to censor our history and erase the truth you should fund the parks",
+    "park": "First Ladies National Historic Site",
+    "date": "2025-06-20",
+    "themes": [
+      "erasure_whitewashing",
+      "save_signs_funding"
+    ],
+    "score": 4
+  },
+  {
+    "text": "The history and stories or flight, failure and learning live here.  So does NC history.  We need to learn all history not just the parts that we like.",
+    "park": "Wright Brothers National Memorial",
+    "date": "2025-06-20",
+    "themes": [],
+    "score": 4
+  },
+  {
+    "text": "Ignore President Trumps executive order. Don\u2019t remove the Trail of Tears or other such signage. History needs to be truthful. Don\u2019t whitewash it. The only way we don\u2019t repeat mistakes is to learn from them and grow.",
+    "park": "Trail Of Tears National Historic Trail",
+    "date": "2025-06-20",
+    "themes": [
+      "erasure_whitewashing",
+      "indigenous_native",
+      "sign_about_signage"
+    ],
+    "score": 4
+  },
+  {
+    "text": "What is this ridiculous sign posted about negative stuff.  You want to erase history of the conquest of the American west? Own it and learn from it rather than hide it and deny it.",
+    "park": "Mesa Verde National Park",
+    "date": "2025-06-20",
+    "themes": [
+      "erasure_whitewashing",
+      "sign_about_signage"
+    ],
+    "score": 4
+  },
+  {
+    "text": "We need to preserve the history of our indigenous peoples. Saenz need to remain up which clearly document the history of those related to the area.",
+    "park": "Aztec Ruins National Monument",
+    "date": "2025-06-20",
+    "themes": [
+      "indigenous_native"
+    ],
+    "score": 4
+  },
+  {
+    "text": "This park and the rangers that work there are doing a wonderful job interpreting a history that isn't always pleasant, but we should learn from. Great job Park Rangers!!!!",
+    "park": "Castillo de San Marcos National Monument",
+    "date": "2025-06-20",
+    "themes": [
+      "save_signs_funding"
+    ],
+    "score": 4
+  },
+  {
+    "text": "Stop needlessly firing rangers and cutting funding. The land belongs to the people and should never be up for sale. Stop the erasure of indigenous history and culture on americas most important natural places.",
+    "park": "Santa Monica Mountains National Recreation Area",
+    "date": "2025-06-21",
+    "themes": [
+      "erasure_whitewashing",
+      "indigenous_native",
+      "save_signs_funding"
+    ],
+    "score": 4
+  },
+  {
+    "text": "Please keep any signage that reveals the full story of Harriet Tubman, even if it shows some Americans in bad light. We cannot celebrate her as an American hero without the full story of slavery in America.",
+    "park": "Harriet Tubman National Historical Park",
+    "date": "2025-06-21",
+    "themes": [
+      "slavery_black_history",
+      "sign_about_signage"
+    ],
+    "score": 4
+  },
+  {
+    "text": "I think that National Parks should be allowed to present history as it happened without censorship or whitewashed. We need to learn about the entire history of our national and be able to learn from past mistakes.",
+    "park": "Reconstruction Era National Historical Park",
+    "date": "2025-06-21",
+    "themes": [
+      "erasure_whitewashing"
+    ],
+    "score": 4
+  },
+  {
+    "text": "We need to fire Interior Secretary, Doug Burgum for requiring new signs that want to whitewash our American history. Negative stories can be true stories. Truth can be uncomfortable.",
+    "park": "Fort Sumter and Fort Moultrie National Historical Park",
+    "date": "2025-06-25",
+    "themes": [
+      "erasure_whitewashing",
+      "trump_administration",
+      "sign_about_signage",
+      "patriotism_truth"
+    ],
+    "score": 4
+  },
+  {
+    "text": "This is a great site and tells an important story about a part of American history most people don't know about. It is important that we and our grandchildren learn this history so it can never be repeated. Thank you NPS",
+    "park": "Minidoka National Historic Site",
+    "date": "2025-06-25",
+    "themes": [
+      "patriotism_truth",
+      "thank_rangers_parks"
+    ],
+    "score": 4
+  },
+  {
+    "text": "I don\u2019t think it\u2019s appropriate here to change or whitewash history.  We want to hear the TRUTH.  This way we learn from our mistakes.",
+    "park": "Birmingham Civil Rights National Monument",
+    "date": "2025-06-27",
+    "themes": [
+      "erasure_whitewashing"
+    ],
+    "score": 4
+  },
+  {
+    "text": "The sign asking people to degrade the true history of this once great country by reporting signs that tell our true history have to go.",
+    "park": "Great Sand Dunes National Park & Preserve",
+    "date": "2025-06-27",
+    "themes": [
+      "sign_about_signage",
+      "patriotism_truth"
+    ],
+    "score": 4
+  },
+  {
+    "text": "Signs asking people to deny history and report the truth as not the truth is pathetic , racist, and petty. The national parks belong to use, not Steven miller and the maga facists",
+    "park": "Bryce Canyon National Park",
+    "date": "2025-06-27",
+    "themes": [
+      "trump_administration",
+      "sign_about_signage"
+    ],
+    "score": 4
+  },
+  {
+    "text": "Park signage should not be changed to modify history, keep to the truth, many things were not pleasant or morally acceptable but history should be acknowledged not ignored.",
+    "park": "Antietam National Battlefield",
+    "date": "2025-06-28",
+    "themes": [
+      "sign_about_signage"
+    ],
+    "score": 4
+  },
+  {
+    "text": "The ranger was amazing. The park was great. The idea that the signs should be amended to whitewash history is censorship at its most disturbing.",
+    "park": "Bent's Old Fort National Historic Site",
+    "date": "2025-06-30",
+    "themes": [
+      "erasure_whitewashing",
+      "save_signs_funding",
+      "sign_about_signage"
+    ],
+    "score": 4
+  },
+  {
+    "text": "Absolute top notch park with amazing park rangers and staff. They need additional funding and for these unhinged joke of politicians to do something worthwhile for once and protect our national parks.",
+    "park": "Big Bend National Park",
+    "date": "2025-07-01",
+    "themes": [
+      "save_signs_funding"
+    ],
+    "score": 4
+  }
+]
