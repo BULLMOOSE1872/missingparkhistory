@@ -342,20 +342,29 @@ def call_claude(since_date: str, urls: Iterable[str]) -> list[Article]:
         log.error("Raw output (first 1000 chars): %s", final_text[:1000])
         return []
 
-    return [parse_article(a) for a in data.get("articles", []) if a]
+    parsed = [parse_article(a) for a in data.get("articles", []) if a]
+    return [a for a in parsed if a is not None]
 
 
-def parse_article(raw: dict) -> Article:
+def parse_article(raw: dict) -> Article | None:
+    # A single malformed article from the model must not abort the whole run.
+    # Skip (with a warning) any entry missing a required field.
+    required = ("date", "source_name", "url", "headline", "summary_html")
+    missing = [k for k in required if not str(raw.get(k, "")).strip()]
+    if missing:
+        log.warning("Skipping malformed article (missing %s): %r", ", ".join(missing), raw)
+        return None
+
     tag = raw.get("tag", "").strip().lower()
     if tag not in VALID_TAGS:
         log.warning("Invalid tag %r; coercing to 'removal'", tag)
         tag = "removal"
     return Article(
-        date=raw["date"],
+        date=raw["date"].strip(),
         source_name=raw["source_name"].strip(),
         source_key=raw.get("source_key", "other").strip().lower() or "other",
         tag=tag,
-        tag_label=raw.get("tag_label", tag.title()).strip(),
+        tag_label=raw.get("tag_label", tag.title()).strip() or tag.title(),
         url=raw["url"].strip(),
         headline=raw["headline"].strip(),
         summary_html=raw["summary_html"].strip(),
