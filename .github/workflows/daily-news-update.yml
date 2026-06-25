@@ -63,13 +63,13 @@ jobs:
           python scripts/update_news.py $ARGS
 
       - name: Re-sort cards chronologically (newest first)
-        if: ${{ inputs.dry_run != 'true' }}
+        if: ${{ !inputs.dry_run }}
         run: |
           python scripts/resort_cards.py news-and-press.html
           python scripts/resort_cards.py index.html
 
       - name: Commit and push changes
-        if: ${{ inputs.dry_run != 'true' }}
+        if: ${{ !inputs.dry_run }}
         run: |
           git config user.name "NPS News Bot"
           git config user.email "bot@missingparkhistory.org"
